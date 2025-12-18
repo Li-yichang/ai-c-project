@@ -1,43 +1,41 @@
-# [cite_start]使用 MIMIC-IV 數據預測住院死亡率 [cite: 1]
+# 使用 MIMIC-IV 數據預測住院死亡率 
 
 ## 專案概述
-[cite_start]本專案利用 MIMIC-IV 數據集預測住院死亡率 [cite: 1, 12][cite_start]。透過分析病患進入 ICU 後前 6 小時內的生命體徵、實驗室結果和人口統計信息，建立早期預警系統 [cite: 8, 42, 46]。
+本專案利用 MIMIC-IV 數據集預測住院死亡率 。透過分析病患進入 ICU 後前 6 小時內的生命體徵、實驗室結果和人口統計信息，建立早期預警系統 。
 
-## 作者
-* [cite_start]李奕璋 (111550032) [cite: 3]
 
 ## 數據與預處理
-[cite_start]本研究使用 MIMIC-IV 數據集，包含超過 70,000 筆 ICU 入院數據 [cite: 12, 13]。
+本研究使用 MIMIC-IV 數據集，包含超過 70,000 筆 ICU 入院數據 。
 
 ### 樣本篩選 (Cohort Selection)
-[cite_start]最終篩選出 16,799 筆 ICU 住院數據 [cite: 34]：
-* [cite_start]每位病患僅保留第一次 ICU 住院紀錄 [cite: 23, 28]。
-* [cite_start]ICU 住院時間至少滿 6 小時 [cite: 24, 30]。
-* [cite_start]出院前至少有 6 小時的測量數據 [cite: 25]。
+最終篩選出 16,799 筆 ICU 住院數據 ：
+*每位病患僅保留第一次 ICU 住院紀錄 。
+* ICU 住院時間至少滿 6 小時。
+* 出院前至少有 6 小時的測量數據 。
 
 
 
 ### 特徵工程
-[cite_start]提取了超過 60 個特徵 [cite: 203]：
-* [cite_start]**人口統計**：年齡、性別和 BMI [cite: 37, 39, 41]。
-* [cite_start]**生命體徵**：心率、呼吸頻率、平均動脈壓 (MAP)、收縮壓 (SBP) 和體溫 [cite: 42, 43, 44]。
-* [cite_start]**實驗室結果**：BUN、肌酸酐、血糖、膽紅素、血紅蛋白、血小板等 [cite: 46, 47, 48]。
-* [cite_start]**診斷**：使用 Multi-hot 編碼的最頻繁前 10 名 ICD 代碼 [cite: 50, 51]。
+提取了超過 60 個特徵 ]：
+* **人口統計**：年齡、性別和 BMI 。
+* **生命體徵**：心率、呼吸頻率、平均動脈壓 (MAP)、收縮壓 (SBP) 和體溫 。
+* **實驗室結果**：BUN、肌酸酐、血糖、膽紅素、血紅蛋白、血小板等 。
+* **診斷**：使用 Multi-hot 編碼的最頻繁前 10 名 ICD 代碼 。
 
 
 
 ## 模型架構
-[cite_start]專案開發了兩套流程以探索性能權衡 [cite: 191]：
+專案開發了兩套流程以探索性能權衡 ：
 
 1. **版本 1 (基準模型)**：
-    * [cite_start]基本特徵聚合（均值、最小值、最大值、標準差） [cite: 194]。
-    * [cite_start]使用邏輯斯迴歸 (Logistic Regression) 和隨機森林 (Random Forest) [cite: 195]。
-    * [cite_start]預設分類閾值為 0.5 [cite: 196]。
+    * 基本特徵聚合（均值、最小值、最大值、標準差）。
+    * 使用邏輯斯迴歸 (Logistic Regression) 和隨機森林 (Random Forest) 。
+    * 預設分類閾值為 0.5 。
 
 2. **版本 2 (增強模型)**：
-    * [cite_start]引入類別權重 (Class Weighting) 處理數據不平衡 [cite: 198]。
-    * [cite_start]將預測閾值調整為 0.3 以增加敏感度 [cite: 199]。
-    * [cite_start]加入 XGBoost 模型 [cite: 200]。
+    * 引入類別權重 (Class Weighting) 處理數據不平衡 。
+    * 將預測閾值調整為 0.3 以增加敏感度 。
+    * 加入 XGBoost 模型 。
 
 
 
