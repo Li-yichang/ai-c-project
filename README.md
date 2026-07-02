@@ -54,4 +54,5 @@
 * 增強版邏輯斯迴歸達到了最高的召回率 (0.918)，適用於病患篩查。
 * XGBoost 提供了最平衡的 F1 分數 (0.467)。
 * 閾值調優在處理醫療數據不平衡中至關重要。
+<img width="2245" height="3179" alt="Predicting In-Hospital Mortality Using ICU Data from MIMIC-IV" src="https://github.com/user-attachments/assets/cebfb3dd-cf7d-4363-896a-23b5fb363a1e" />
    
